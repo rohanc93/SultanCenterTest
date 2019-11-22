@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="53113" started-at="2019-11-20T12:27:23Z" finished-at="2019-11-20T12:28:16Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="53113" started-at="2019-11-20T12:27:23Z" finished-at="2019-11-20T12:28:16Z">
+      <class name="com.sultan.qa.testcases.MiniCartPageTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.sultan.qa.testcases.MiniCartPageTest@6debcae2]" name="setup" is-config="true" duration-ms="19729" started-at="2019-11-20T17:57:23Z" finished-at="2019-11-20T17:57:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="removeItemTest()[pri:0, instance:com.sultan.qa.testcases.MiniCartPageTest@6debcae2]" name="removeItemTest" duration-ms="28794" started-at="2019-11-20T17:57:43Z" finished-at="2019-11-20T17:58:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeItemTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.sultan.qa.testcases.MiniCartPageTest@6debcae2]" name="tearDown" is-config="true" duration-ms="4580" started-at="2019-11-20T17:58:11Z" finished-at="2019-11-20T17:58:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.sultan.qa.testcases.MiniCartPageTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
