@@ -6,14 +6,18 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.sultan.qa.base.TestBase;
 
-public class MiniCartPage extends TestBase {
+public class MiniCartPage<object> extends TestBase {
+	WebDriverWait wait = new WebDriverWait(driver, 60);
 	
-	@FindBy(xpath = "//div[@class='floatingCartTitle showcart']")
+	@FindBy(xpath = "/html[1]/body[1]/div[4]/header[1]/div[2]/div[1]/div[2]/div[1]")
 	WebElement cartIcon;
 	
 	@FindBy(xpath="//li[1]//div[1]//div[1]//div[1]//div[2]//input[3]")
@@ -33,6 +37,12 @@ public class MiniCartPage extends TestBase {
 	
 	@FindBy(xpath="//input[@class='item-qty cart-item-qty']")
 	WebElement qtyCount;
+	
+	@FindBy(xpath="//a[@class='action viewcart']")
+	WebElement viewCartBtn;
+	
+	@FindBy(xpath="//span[@class='total_value']")
+	WebElement grandTotal;
 	
 	public MiniCartPage() throws IOException {
 		super();
@@ -88,6 +98,15 @@ public class MiniCartPage extends TestBase {
 		}else {
 			System.out.println("item not removed");
 		}
+	}
+	
+	public void usecartIcon() throws InterruptedException {
+		cartIcon = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='floatingCartMainSpan']")));
+		cartIcon.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
 	}
 	
 	

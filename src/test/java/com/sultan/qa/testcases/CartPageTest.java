@@ -58,7 +58,7 @@ public class CartPageTest extends TestBase {
 		Thread.sleep(5000);
 	}
 	
-	@Test(priority =5 , enabled = false)
+	@Test(priority =5 , enabled = true)
 	public void applyCouponTest() throws IOException, InterruptedException {
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 		cartPage.couponCode("cart1");

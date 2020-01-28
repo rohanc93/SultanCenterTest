@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.sultan.qa.base.TestBase;
 
 public class CartPage extends TestBase {
+	static String total , total1;
+	static float i,i1;
 	WebDriverWait wait = new WebDriverWait(driver, 60);
 
 	@FindBy(xpath = "//div[@class='floatingCartTitle showcart']")
@@ -52,6 +54,12 @@ public class CartPage extends TestBase {
 
 	@FindBy(xpath = "//div[@class='fieldset coupon']//div[@class='primary']")
 	WebElement removeCouponBtn;
+	
+	@FindBy(xpath="//li[@class='item']//button[@class='action primary checkout']")
+	WebElement checkoutBtn;
+	
+	@FindBy(xpath="//span[@class='total_value']")
+	WebElement grandTotal;
 
 	public CartPage() throws IOException {
 		super();
@@ -203,8 +211,37 @@ public class CartPage extends TestBase {
 		}
 	}
 	
+	public void clickProceedToCheckout() {
+		checkoutBtn = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='item']//button[@class='action primary checkout']")));
+		checkoutBtn.click();
+	}
+	
+	public void incQty() {
+		for (int i=0 ; i<3 ;i++ ) {
+			driver.findElement(By.xpath("//tbody[1]//tr[1]//td[4]//div[1]//div[1]//input[2]")).click();
+		}
+	}
+	
+	public void grandTotal() {
+		total = grandTotal.getText();
+		String[] s = total.split("\\s+");
+		i=Float.parseFloat(s[1]);
+	}
 	
 	
+	public void grandTotal1() {
+		total1 = grandTotal.getText();
+		String[] s = total1.split("\\s+");
+		 i1=Float.parseFloat(s[1]);  
+		if(i1>6) {
+			clickProceedToCheckout();
+		}
+		else {
+			System.out.println("Cart total is less");
+		}
+		
+	}
 	
 	
 }

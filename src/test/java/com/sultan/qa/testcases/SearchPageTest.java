@@ -17,8 +17,6 @@ public class SearchPageTest extends TestBase {
 	HomePage homePage;
 	SearchPage searchPage;
 	
-	
-	
 	public SearchPageTest() throws IOException {
 		super();
 		
@@ -34,7 +32,7 @@ public class SearchPageTest extends TestBase {
 	@Test
 	public void searchTest() throws IOException, InterruptedException {
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		searchPage.search("fish");
+		searchPage.search("chairs");
 		searchPage.addToCart();
 		//Thread.sleep(3000);
 	}
