@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.sultan.qa.base.TestBase;
 
 public class MyAccountSection extends TestBase {
+	RegisterationModel model;
 
 	@FindBy(xpath = "//span[@class='my_accont_click']")
 	WebElement myAccBtn;
@@ -72,10 +73,63 @@ public class MyAccountSection extends TestBase {
 
 	@FindBy(id = "wishlist_tab_name_68448")
 	WebElement renameList;
+	
+	@FindBy(xpath="//span[contains(text(),'Add New Address')]")
+	WebElement addAddressBtn;
+	
+	@FindBy(id="governorate")
+	WebElement governorate;
+	
+	@FindBy(id="area")
+	WebElement area;
+	
+	@FindBy(id="block_number")
+	WebElement blockNo;
+	
+	@FindBy(id="street_avenue")
+	WebElement streetName;
+	
+	@FindBy(id="building_number")
+	WebElement bldgNo;
+	
+	@FindBy(id="floor_number")
+	WebElement floorNo;
+	
+	@FindBy(id="apartment_number")
+	WebElement aptNo;
+	
+	@FindBy(id="telephone")
+	WebElement telephone;
+	
+	@FindBy(id="landmark")
+	WebElement landmark;
+	
+	@FindBy(xpath="//label[@class='label css-checkbox-label']")
+	WebElement setPreferedBox;
 
 	public MyAccountSection() throws IOException {
 		super();
 		PageFactory.initElements(driver, this);
+		model = new RegisterationModel();
+	}
+	
+	
+public void addAddress(RegisterationModel resModel) throws InterruptedException {
+	addAddressBtn.click();
+	Select govt = new Select(governorate);
+	govt.selectByIndex(2);
+	Thread.sleep(3000);
+	Select ar = new Select(area);
+	ar.selectByIndex(2);
+	Thread.sleep(3000);
+	Select blck = new Select(blockNo);
+	blck.selectByIndex(1);
+	streetName.sendKeys(resModel.getStreetName());
+	bldgNo.sendKeys(resModel.getBldgNo());
+	floorNo.sendKeys(resModel.getFloorNo());
+	aptNo.sendKeys(resModel.getAptNo());
+	telephone.sendKeys(resModel.getPhnNo());
+	saveBtn.click();
 
 	}
 

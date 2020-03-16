@@ -25,7 +25,7 @@ public class MiniCartPageTest extends TestBase{
 	}
 	@BeforeMethod
 	public void setup() throws IOException {
-		initialization();
+		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 		miniCartPage = new MiniCartPage();
 	}

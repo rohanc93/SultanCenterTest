@@ -45,6 +45,9 @@ public class LoginPage extends TestBase {
 	@FindBy(xpath = "//div[@class='page messages']")
 	static WebElement resetCnfmtn;
 
+	@FindBy(xpath = "//span[contains(text(),'Welcome, Rohan!')]")
+	WebElement welcomeText;
+
 	// Initializing PageFactory elements
 	public LoginPage() throws IOException {
 		super();
@@ -70,7 +73,7 @@ public class LoginPage extends TestBase {
 		signInBtn2.click();
 		Thread.sleep(5000);
 		String title = driver.getTitle();
-		//System.out.println(title);
+		// System.out.println(title);
 		if (title.equals("Kuwait's Best Online Grocery Shopping | سلطان اونلاين توصيل طلبات")) {
 			System.out.println("Login Success");
 		} else {
@@ -119,4 +122,22 @@ public class LoginPage extends TestBase {
 		}
 
 	}
+
+	public void nonloggedInCheckout(String un, String pwd) throws IOException, InterruptedException {
+		// signInBtn.click();
+		username.sendKeys(un);
+		Thread.sleep(2000);
+		password.sendKeys(pwd);
+		Thread.sleep(2000);
+		signInBtn2.click();
+		Thread.sleep(5000);
+		if (welcomeText.getText().contains("Welcome, Rohan!")) {
+			System.out.println("Login Success");
+		} else {
+			System.out.println("login Fail");
+		}
+
+	}
+	
+	
 }

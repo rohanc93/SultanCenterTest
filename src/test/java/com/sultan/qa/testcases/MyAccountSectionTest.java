@@ -23,7 +23,7 @@ public class MyAccountSectionTest extends TestBase {
 
 	@BeforeMethod
 	public void setup() throws IOException {
-		initialization();
+		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 		homePage = new HomePage();
 		accPage = new MyAccountSection();

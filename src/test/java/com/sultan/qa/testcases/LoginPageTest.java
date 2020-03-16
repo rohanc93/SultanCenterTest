@@ -23,7 +23,7 @@ public class LoginPageTest extends TestBase {
 
 	@BeforeMethod
 	public void setup() throws IOException {
-		initialization();
+		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 	}
 
@@ -33,7 +33,7 @@ public class LoginPageTest extends TestBase {
 		Assert.assertEquals(title, "Customer Login");
 	}
 
-	@Test(priority = 2 , enabled =false)
+	@Test(priority = 2 , enabled =true)
 	public void sultanLogoImageTest() {
 		boolean flag = loginPage.validateSultanImage();
 		Assert.assertTrue(flag);
@@ -58,7 +58,7 @@ public class LoginPageTest extends TestBase {
 		Assert.assertTrue(flag2, "Count of links in footer are less/more....");
 	}
 	
-	@Test(priority = 6)
+	@Test(priority = 6 , enabled = false)
 	public void fgtPwdLinkTest() throws InterruptedException {
 		loginPage.fgtPasswdLink("yogita@techsevin.com");
 	}

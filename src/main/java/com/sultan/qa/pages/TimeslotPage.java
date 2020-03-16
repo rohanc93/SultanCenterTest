@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,7 +26,7 @@ public class TimeslotPage extends TestBase{
 	@FindBy(xpath="//button[@class='button action continue primary']")
 	WebElement nxtBtn;
 	
-	@FindBy(xpath="//tr[@class='row same-day-slot']//td[2]")
+	@FindBy(xpath="//tr[16]//td[4]")
 	WebElement tsBtn;
 	
 	@FindBy(xpath="//button[@class='action primary checkout']")
@@ -47,16 +48,17 @@ public class TimeslotPage extends TestBase{
 	}
 	
 	public void selectTimeslot() {
-		/*List<WebElement> timeslots = driver.findElements(By.xpath("//div[@id='checkout-step-shipping_method']"));
-		System.out.println(timeslots.size());*/
-		tsBtn = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[@class='row same-day-slot']//td[2]")));
-		tsBtn.click();
-		nxtBtn = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='button action continue primary']")));
-		nxtBtn.click();
-		checkoutBtn.click();
-		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement Element = driver.findElement(By.xpath("//div[@class='control']//textarea"));
+		js.executeScript("arguments[0].scrollIntoView();", Element);
+		 tsBtn = wait.until( ExpectedConditions.visibilityOfElementLocated(By.
+		 xpath("//tr[16]//td[4]")));
+		 tsBtn.click();
+		 
+		  nxtBtn = wait.until( ExpectedConditions.visibilityOfElementLocated(By.
+		 xpath("//button[@class='button action continue primary']"))); nxtBtn.click();
+		 
+		 		//checkoutBtn.click();	
 	}
 
 }

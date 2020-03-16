@@ -15,17 +15,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.sultan.qa.base.TestBase;
 
 public class CartPage extends TestBase {
-	static String total , total1;
-	static float i,i1;
+	static String total, total1;
+	static float i, i1;
 	WebDriverWait wait = new WebDriverWait(driver, 60);
 
-	@FindBy(xpath = "//div[@class='floatingCartTitle showcart']")
+	@FindBy(xpath = "//div[@class='minicart-wrapper cart_outer']")
 	WebElement cartIcon;
 
-	@FindBy(xpath = "//a[@class='action viewcart']")
-	WebElement viewCart;
+	@FindBy(xpath="//a[@class='action viewcart']")
+	WebElement viewCartBtn;
 
-	@FindBy(xpath = "//body[@class='checkout-cart-index page-layout-1column default']/div[@class='page-wrapper']/main[@id='maincontent']/div[@class='columns']/div[@class='column main']/div[@class='cart-container']/form[@id='form-validate']/div[@class='cart table-wrapper']/table[@id='shopping-cart-table']/tbody[1]/tr[1]/td[2]/div[1]/div[2]/div[1]")
+	@FindBy(xpath = "//div[@class='cart_add_note']//span[@class='tooltip addNoteCartPage']")
 	WebElement addNote;
 
 	@FindBy(name = "addNoteVal")
@@ -34,12 +34,12 @@ public class CartPage extends TestBase {
 	@FindBy(name = "savenotebtn")
 	WebElement saveNoteBtn;
 
-	@FindBy(xpath = "//tbody[1]//tr[1]//td[7]//div[1]//a[1]")
+	@FindBy(xpath = "//div[@class='actions-toolbar']//a[@class='action action-delete']")
 	WebElement removeItem;
 
 	@FindBy(xpath = "//button[@id='empty_cart_button']")
 	WebElement emptyCartBtn;
-
+	
 	@FindBy(xpath = "//button[@id='empty_cart_button']")
 	WebElement scroll;
 
@@ -52,15 +52,46 @@ public class CartPage extends TestBase {
 	@FindBy(xpath = "//button[@class='action apply primary']")
 	WebElement applyCouponBtn;
 
-	@FindBy(xpath = "//div[@class='fieldset coupon']//div[@class='primary']")
+	@FindBy(xpath = "//span[contains(text(),'Cancel')]")
 	WebElement removeCouponBtn;
-	
-	@FindBy(xpath="//li[@class='item']//button[@class='action primary checkout']")
-	WebElement checkoutBtn;
-	
-	@FindBy(xpath="//span[@class='total_value']")
-	WebElement grandTotal;
 
+	@FindBy(xpath = "//li[@class='item']//button[@class='action primary checkout']")
+	WebElement checkoutBtn;
+
+	@FindBy(xpath = "//span[@class='total_value']")
+	WebElement grandTotal;
+	
+	@FindBy(xpath="//div[@class='control qty']//input[@title='Qty']")
+	WebElement qtyCount;
+	
+	@FindBy(xpath="//div//input[@class='qty_btn_inc']")
+	WebElement qtyInc;
+	
+	@FindBy(xpath="//div//input[@class='qty_btn_dec']")
+	WebElement qtyDec;
+	
+	 @FindBy(xpath="//form[@id='form-validate']//tbody//tr[1]//td[1]")
+	 List<WebElement> prodCount;
+	 
+	 @FindBy(xpath="//span[contains(text(),'Save Cart As List')]")
+	 WebElement saveCartListBtn;
+	 
+	 @FindBy(xpath="//label[contains(text(),'OR create a new List')]")
+	 WebElement createNewList;
+	 
+	 @FindBy(xpath="//input[@id='mwishlist_new']")
+	 WebElement newListName;
+	 
+	 @FindBy(xpath="//button[@id='mwishlist_popup_add']")
+	 WebElement addListBtn;
+	 
+	 @FindBy(xpath="//div[contains(text(),'All Items has been Added to your Shopping List.')]")
+	 WebElement addListSuccessMsg;
+	 
+	 @FindBy(xpath="//div[@class='cart_note_title']")
+	 WebElement scrollForCoupon;
+	 
+	 
 	public CartPage() throws IOException {
 		super();
 		PageFactory.initElements(driver, this);
@@ -68,34 +99,38 @@ public class CartPage extends TestBase {
 
 	public void increaseQty() throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
 		Thread.sleep(3000);
-		List<WebElement> prodCount = driver.findElements(By.xpath("//form[@id='form-validate']//tbody//tr[1]//td[1]"));
-		System.out.println(prodCount.size());
-		WebElement qtyCount = driver.findElement(By.xpath("//input[@id='cart-1835878-qty']"));
+		//List<WebElement> prodCount = driver.findElements(By.xpath("//form[@id='form-validate']//tbody//tr[1]//td[1]"));
+		//System.out.println(prodCount.size());
 		String count = qtyCount.getAttribute("value");
-		// System.out.println(count);
-		driver.findElement(By.xpath("//tbody[1]//tr[1]//td[4]//div[1]//div[1]//input[2]")).click();
+		//System.out.println(count);
+		qtyInc.click();
 		String count1 = qtyCount.getAttribute("value");
-		if (count != count1) {
-			System.out.println("Qty increased");
-		} else {
-			System.out.println("Qty not increased");
-		}
+		//System.out.println(count1);
+		 if (count != count1)
+		 { 
+			 System.out.println("Qty increased"); 
+			 }
+		 else {
+		 System.out.println("Qty not increased");
+		 }	 
 	}
 
 	public void decreaseQty() throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
-		WebElement qtyCount = driver.findElement(By.xpath("//input[@id='cart-1835878-qty']"));
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
+		Thread.sleep(3000);
 		String count = qtyCount.getAttribute("value");
-		driver.findElement(By.xpath("//tbody[1]//tr[1]//td[4]//div[1]//div[1]//input[1]")).click();
+		qtyDec.click();
 		String count1 = qtyCount.getAttribute("value");
 		if (count != count1) {
 			System.out.println("Qty Decreased");
@@ -104,18 +139,22 @@ public class CartPage extends TestBase {
 		}
 	}
 
+	
 	public void addNote(String note) throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
+		Thread.sleep(3000);
 		addNote.click();
 		editNoteBox.clear();
 		editNoteBox.sendKeys(note);
 		saveNoteBtn.click();
 		Alert alert = driver.switchTo().alert();
 		Thread.sleep(2000);
+		System.out.println(alert.getText());
 		alert.accept();
 		Thread.sleep(3000);
 
@@ -123,30 +162,37 @@ public class CartPage extends TestBase {
 
 	public void removeItem() throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
-		// removeItem.click();
-		List<WebElement> prodCount = driver.findElements(By.xpath("//form[@id='form-validate']//tbody//tr[1]//td[1]"));
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
+		Thread.sleep(3000);
 		int count = prodCount.size();
-		// System.out.println(count);
-		removeItem.click();
-		int count1 = prodCount.size();
-		// System.out.println(count1);
-		if (count != count1) {
-			System.out.println("product removal success");
-		} else {
-			System.out.println("product not removed");
-		}
+		//System.out.println(count);
+		 Thread.sleep(3000);
+		 removeItem.click(); 
+		 Thread.sleep(6000);
+		 int count1 = prodCount.size(); 
+		 //System.out.println(count1); 
+		 if (count != count1) {
+			 System.out.println("product removal success"); 
+		 	} 
+		 else 
+		 {
+			 System.out.println("product not removed");
+		 }
+		 
 	}
 
 	public void emptyCart() throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
+		Thread.sleep(3000);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView();", scroll);
 		// Thread.sleep(3000);
@@ -161,14 +207,42 @@ public class CartPage extends TestBase {
 
 	}
 
+	public void saveCartAsList(String wishlistName) throws InterruptedException {
+		cartIcon = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
+		cartIcon.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
+		Thread.sleep(3000);
+		saveCartListBtn.click();
+		Thread.sleep(2000);
+		createNewList.click();
+		Thread.sleep(2000);
+		newListName.sendKeys(wishlistName);
+		addListBtn.click();
+		String msg = addListSuccessMsg.getText();
+		//System.out.println(msg);
+		if(msg.equals("All Items has been Added to your Shopping List.")) {
+			System.out.println("Save cart as List success");
+		}
+		else {
+			System.out.println("Save cart as List Failure");
+		}
+	}
+	
+	
 	public void couponCode(String coupon) throws InterruptedException {
 		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='floatingCartTitle showcart']")));
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='minicart-wrapper cart_outer']")));
 		cartIcon.click();
-		viewCart = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
-		viewCart.click();
+		Thread.sleep(2000);
+		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		viewCartBtn.click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();", scroll);
+		js.executeScript("arguments[0].scrollIntoView();", scrollForCoupon);
+		//removeCouponBtn = wait.until(
+				//ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='action apply primary']")));
 		if (removeCouponBtn.isDisplayed() && removeCouponBtn != null) {
 			Thread.sleep(3000);
 			removeCouponBtn.click();
@@ -210,38 +284,45 @@ public class CartPage extends TestBase {
 			}
 		}
 	}
-	
+
 	public void clickProceedToCheckout() {
-		checkoutBtn = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='item']//button[@class='action primary checkout']")));
+		checkoutBtn = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//li[@class='item']//button[@class='action primary checkout']")));
 		checkoutBtn.click();
 	}
-	
+
 	public void incQty() {
-		for (int i=0 ; i<3 ;i++ ) {
-			driver.findElement(By.xpath("//tbody[1]//tr[1]//td[4]//div[1]//div[1]//input[2]")).click();
+		for (int i = 0; i < 3; i++) {
+			driver.findElement(By.xpath("//input[@class='qty_btn_inc']")).click();
 		}
 	}
-	
+
+	public void incQtyList() {
+		for (int i = 0; i < 3; i++) {
+			driver.findElement(By.xpath("//button[@class='incr_qty'][contains(text(),'+')]")).click();
+		}
+	}
+
 	public void grandTotal() {
 		total = grandTotal.getText();
 		String[] s = total.split("\\s+");
-		i=Float.parseFloat(s[1]);
+		i = Float.parseFloat(s[1]);
 	}
-	
-	
+
 	public void grandTotal1() {
 		total1 = grandTotal.getText();
 		String[] s = total1.split("\\s+");
-		 i1=Float.parseFloat(s[1]);  
-		if(i1>6) {
+		i1 = Float.parseFloat(s[1]);
+		if (i1 > 6) {
 			clickProceedToCheckout();
-		}
-		else {
+		} else {
 			System.out.println("Cart total is less");
 		}
-		
+
 	}
-	
-	
+
+	public void nonLoggedInCheckout() {
+
+	}
+
 }

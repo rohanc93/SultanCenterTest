@@ -22,7 +22,7 @@ public class TimeslotPageTest extends TestBase {
 	
 	@BeforeMethod
 	public void setup() throws IOException {
-		initialization();
+		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 		tsp = new TimeslotPage();
 	}

@@ -22,14 +22,14 @@ public class CartPageTest extends TestBase {
 	}
 	@BeforeMethod
 	public void setup() throws IOException {
-		initialization();
+		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 		cartPage = new CartPage();
 	}
 	
 	@Test(priority=1 ,enabled=false , description ="increase qty in cart")
 	public void incQtyCart() throws IOException, InterruptedException {
-		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password")); 
 		cartPage.increaseQty();
 	}
 	
@@ -61,7 +61,13 @@ public class CartPageTest extends TestBase {
 	@Test(priority =5 , enabled = true)
 	public void applyCouponTest() throws IOException, InterruptedException {
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		cartPage.couponCode("cart1");
+		cartPage.couponCode("test");
+	}
+	
+	@Test(priority =6 , enabled = false)
+	public void saveCartAsListTest() throws IOException, InterruptedException {
+		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		cartPage.saveCartAsList("Rohan");
 	}
 	
 	@AfterMethod

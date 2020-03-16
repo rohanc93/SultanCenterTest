@@ -24,7 +24,7 @@ public class TestBase {
 		prop.load(ip);
 	}
 
-	public static void initialization() {
+	public static void initialization(String isLogin) {
 		String browserName = prop.getProperty("browser");
 		if (browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
@@ -39,13 +39,52 @@ public class TestBase {
 			driver = new FirefoxDriver();
 
 		}
-
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		
 		driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
-		driver.get(prop.getProperty("signinurl"));
+		
+		try {
+			if(isLogin.equals("1"))
+			{
+				driver.get(prop.getProperty("signinurl"));
+				//System.out.println("isLogin : "+ prop.getProperty("signinurl") );
+			}else if(isLogin.equals("0")) {
+				driver.get(prop.getProperty("signinurl1"));
+				//System.out.println("isLogin : "+ prop.getProperty("signinurl1"));
+			}else {
+				driver.get(prop.getProperty("regurl"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			System.out.println("exception ="+e.getMessage());
+		}
+		
 	}
+	
+	
+	/*
+	 * public static void initialization1() { String browserName =
+	 * prop.getProperty("browser"); if (browserName.equals("chrome")) {
+	 * System.setProperty("webdriver.chrome.driver",
+	 * "/home/rohan/eclipse-workspace1/SultanCenter_Staging/src/main/resources/Browsers/chromedriver"
+	 * ); driver = new ChromeDriver(); } else if (browserName.equals("firefox")) {
+	 * System.setProperty("webdriver.gecko.driver",
+	 * "/home/rohan/eclipse-workspace1/SultanCenter_Staging/src/main/resources/Browsers/geckodriver"
+	 * ); System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,
+	 * "true"); System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
+	 * "/home/rohan/eclipse-workspace1/SultanCenter_Staging/target/logs.txt");
+	 * driver = new FirefoxDriver();
+	 * 
+	 * } driver.manage().window().maximize(); driver.manage().deleteAllCookies();
+	 * 
+	 * driver.manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT,
+	 * TimeUnit.SECONDS);
+	 * driver.manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT,
+	 * TimeUnit.SECONDS); driver.get(prop.getProperty("signinurl1")); }
+	 */
 
 }

@@ -54,6 +54,9 @@ public class SearchPage extends TestBase {
 			}
 			Thread.sleep(4000);
 	}
-}	
+}
+	public void navigateUrl() {
+		driver.navigate().to("https://m2staging.sultan-center.com/catalogsearch/result/?q=FISH");
+	}
 
 }
