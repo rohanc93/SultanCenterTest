@@ -111,6 +111,7 @@ public class RegisterationModel {
 	public void setCnfPwd(String cnfPwd) {
 		this.cnfPwd = cnfPwd;
 	}
+
 	
 	
 	
