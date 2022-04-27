@@ -55,7 +55,7 @@ public class CartPage extends TestBase {
 	@FindBy(xpath = "//span[contains(text(),'Cancel')]")
 	WebElement removeCouponBtn;
 
-	@FindBy(xpath = "//li[@class='item']//button[@class='action primary checkout']")
+	@FindBy(xpath = "//button[@class='checkout proceed_to_checkout']")
 	WebElement checkoutBtn;
 
 	@FindBy(xpath = "//span[@class='total_value']")
@@ -285,10 +285,11 @@ public class CartPage extends TestBase {
 		}
 	}
 
-	public void clickProceedToCheckout() {
-		checkoutBtn = wait.until(ExpectedConditions
+	public void clickProceedToCheckout() throws InterruptedException {
+		Thread.sleep(3000);
+		/*checkoutBtn = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath("//li[@class='item']//button[@class='action primary checkout']")));
-		checkoutBtn.click();
+*/		checkoutBtn.click();
 	}
 
 	public void incQty() {
@@ -309,7 +310,7 @@ public class CartPage extends TestBase {
 		i = Float.parseFloat(s[1]);
 	}
 
-	public void grandTotal1() {
+	public void grandTotal1() throws InterruptedException {
 		total1 = grandTotal.getText();
 		String[] s = total1.split("\\s+");
 		i1 = Float.parseFloat(s[1]);

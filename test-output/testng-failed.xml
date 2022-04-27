@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.sultan.qa.testcases.RegisterationTest">
+      <class name="com.sultan.qa.testcases.SmokeTest">
         <methods>
-          <include name="registerTest"/>
           <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="loggedInUserCheckout"/>
         </methods>
-      </class> <!-- com.sultan.qa.testcases.RegisterationTest -->
+      </class> <!-- com.sultan.qa.testcases.SmokeTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

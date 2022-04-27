@@ -38,7 +38,7 @@ public class TimeslotPageTest extends TestBase {
 	public void selectTimeslotTest() throws IOException, InterruptedException {
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 		driver.navigate().to("https://m2staging.sultan-center.com/checkout/");
-		tsp.selectTimeslot();
+		tsp.selectSlot();
 	}
 	
 	

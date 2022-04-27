@@ -72,12 +72,13 @@ public class LoginPage extends TestBase {
 		Thread.sleep(2000);
 		signInBtn2.click();
 		Thread.sleep(5000);
-		String title = driver.getTitle();
-		// System.out.println(title);
-		if (title.equals("Kuwait's Best Online Grocery Shopping | سلطان اونلاين توصيل طلبات")) {
-			System.out.println("Login Success");
+		//String title = driver.getTitle();
+	
+		System.out.println(welcomeText);
+		if (welcomeText.isDisplayed()) {
+			System.out.println("Login Successfull");
 		} else {
-			System.out.println("login Fail");
+			System.out.println("Login Failed");
 		}
 		return new HomePage();
 	}

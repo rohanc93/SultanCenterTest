@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +18,11 @@ import com.sultan.qa.base.TestBase;
 public class MiniCartPage<object> extends TestBase {
 	WebDriverWait wait = new WebDriverWait(driver, 60);
 	
-	@FindBy(xpath = "/html[1]/body[1]/div[4]/header[1]/div[2]/div[1]/div[2]/div[1]")
+	@FindBy(xpath = "//span[@class='counter-number']")
 	WebElement cartIcon;
+	
+	@FindBy(xpath = "//div[@class='floatingCartTitle showcart']")
+	WebElement sideCart;
 	
 	@FindBy(xpath="//li[1]//div[1]//div[1]//div[1]//div[2]//input[3]")
 	WebElement incQty;
@@ -43,6 +47,9 @@ public class MiniCartPage<object> extends TestBase {
 	
 	@FindBy(xpath="//span[@class='total_value']")
 	WebElement grandTotal;
+	
+	@FindBy(xpath="//ol[@class='products list items product-items UNX-grid-block']")
+	WebElement click;
 	
 	public MiniCartPage() throws IOException {
 		super();
@@ -101,12 +108,19 @@ public class MiniCartPage<object> extends TestBase {
 	}
 	
 	public void usecartIcon() throws InterruptedException {
-		cartIcon = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='floatingCartMainSpan']")));
+		Thread.sleep(3000);
+		click.click();
+		/*cartIcon = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='floatingCartMainSpan']")));*/
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", cartIcon);
+		//js.executeScript("window.scrollBy(0,-500);");
+		Thread.sleep(2000);
 		cartIcon.click();
 		Thread.sleep(2000);
-		viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
+		//viewCartBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='action viewcart']")));
 		viewCartBtn.click();
+		Thread.sleep(2000);
 	}
 	
 	

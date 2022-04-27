@@ -29,8 +29,11 @@ public class TimeslotPage extends TestBase{
 	@FindBy(xpath="//tr[16]//td[4]")
 	WebElement tsBtn;
 	
-	@FindBy(xpath="//button[@class='action primary checkout']")
+	@FindBy(xpath="//button[@class='button action continue primary']")
 	WebElement checkoutBtn;
+	
+	@FindBy(xpath="//input[@name='radio']")
+	WebElement tsBtn1;
 	
 
 	public TimeslotPage() throws IOException {
@@ -47,7 +50,7 @@ public class TimeslotPage extends TestBase{
 		return false;
 	}
 	
-	public void selectTimeslot() {
+/*	public void selectTimeslot() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement Element = driver.findElement(By.xpath("//div[@class='control']//textarea"));
 		js.executeScript("arguments[0].scrollIntoView();", Element);
@@ -59,6 +62,21 @@ public class TimeslotPage extends TestBase{
 		 xpath("//button[@class='button action continue primary']"))); nxtBtn.click();
 		 
 		 		//checkoutBtn.click();	
+	}*/
+	
+	public void selectSlot() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", tsBtn1);
+		driver.findElements(By.xpath("//input[@name='radio']")).get(0).click();
+		Thread.sleep(3000);
+		if(tsBtn1.isSelected()) {
+			System.out.println("Timeslot selected");
+		}
+		else {
+			System.out.println("Timeslot selection failed");
+		}
+		checkoutBtn.click();
+		
 	}
 
 }

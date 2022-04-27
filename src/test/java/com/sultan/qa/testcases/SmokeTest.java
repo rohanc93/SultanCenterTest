@@ -49,24 +49,27 @@ public class SmokeTest extends TestBase {
 	@Test(priority = 1, enabled = true)
 	public void loggedInUserCheckout() throws IOException, InterruptedException {
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-		searchPage.navigateUrl();
-		// searchPage.search("fruits");
+		dp.selectCTCStore();
+		Thread.sleep(3000);
+		//searchPage.navigateUrl();
+		searchPage.search("milk");
 		Thread.sleep(5000);
-		cartPage.incQtyList();
+		//cartPage.incQtyList();
 		searchPage.addToCart();
 		Thread.sleep(3000);
 		miniCartPage.usecartIcon();
-		cartPage.grandTotal();
+		//cartPage.grandTotal();
 		Thread.sleep(4000);
 		// cartPage.incQty();
 		// Thread.sleep(3000);
 		// cartPage.grandTotal1();
 		cartPage.clickProceedToCheckout();
-		Thread.sleep(20000);
-		tsp.selectTimeslot();
+		Thread.sleep(10000);
+		tsp.selectSlot();
+		po.selectPayment();
 		po.placeOrder();
 		po.orderSuccess();
-		po.getOrderId();
+		//po.getOrderId();
 	}
 
 	@Test(enabled = false)
@@ -84,10 +87,10 @@ public class SmokeTest extends TestBase {
 		loginPage.nonloggedInCheckout(prop.getProperty("username"), prop.getProperty("password"));
 		cartPage.clickProceedToCheckout();
 		Thread.sleep(20000);
-		tsp.selectTimeslot();
+		tsp.selectSlot();
 		po.placeOrder();
 		po.orderSuccess();
-		po.getOrderId();
+		//po.getOrderId();
 
 	}
 

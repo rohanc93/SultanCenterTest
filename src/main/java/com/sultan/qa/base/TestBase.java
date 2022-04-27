@@ -20,7 +20,7 @@ public class TestBase {
 	public TestBase() throws IOException {
 		prop = new Properties();
 		FileInputStream ip = new FileInputStream(
-				"/home/rohan/eclipse-workspace1/SultanCenter_Staging/src/main/java/com/sultan/qa/config/config.properties");
+				"C:\\sultancenter_staging\\src\\main\\java\\com\\sultan\\qa\\config\\config.properties");
 		prop.load(ip);
 	}
 
@@ -28,14 +28,14 @@ public class TestBase {
 		String browserName = prop.getProperty("browser");
 		if (browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"/home/rohan/eclipse-workspace1/SultanCenter_Staging/src/main/resources/Browsers/chromedriver");
+					"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
-					"/home/rohan/eclipse-workspace1/SultanCenter_Staging/src/main/resources/Browsers/geckodriver");
+					"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\geckodriver.exe");
 			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
 			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
-					"/home/rohan/eclipse-workspace1/SultanCenter_Staging/target/logs.txt");
+					"C:\\sultancenter_staging\\target\\logs.txt");
 			driver = new FirefoxDriver();
 
 		}

@@ -21,6 +21,15 @@ public class DeliveryPopUp  extends TestBase{
 	
 	@FindBy(xpath="//aside[contains(@class,'_show')]")
 	WebElement outClick;
+	
+	@FindBy(xpath="//select[@id='select_click_to_collect']")
+	WebElement chooseStore;
+	
+	@FindBy(xpath="//a[@id='click_to_collect_settings' and @href='#']")
+	WebElement deliveryHeader;
+	
+	@FindBy(xpath="//div[@class='panel header']")
+	WebElement click;
 
 	public DeliveryPopUp() throws IOException {
 		super();
@@ -35,6 +44,25 @@ public class DeliveryPopUp  extends TestBase{
 		chooseArea.sendKeys(Keys.DOWN , Keys.ENTER);
 		Thread.sleep(5000);
 		//continueShopBtn.click();
+	}
+	
+	public void selectCTCStore () throws InterruptedException {
+		Thread.sleep(2000);
+		
+		//click.click();
+		/*boolean d = deliveryHeader.isDisplayed();
+		if(d) {
+			System.out.println("element present");
+		}else
+		{
+			System.out.println("not present");
+		}*/
+		deliveryHeader.click();
+		Select store = new Select(driver.findElement(By.id("select_click_to_collect")));
+		store.selectByValue("45");
+		continueShopBtn.click();
+		Thread.sleep(2000);
+	
 	}
 
 }
