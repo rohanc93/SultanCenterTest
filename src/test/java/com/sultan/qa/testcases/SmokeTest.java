@@ -51,7 +51,6 @@ public class SmokeTest extends TestBase {
 		loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 		dp.selectCTCStore();
 		Thread.sleep(3000);
-		//searchPage.navigateUrl();
 		searchPage.search("milk");
 		Thread.sleep(5000);
 		//cartPage.incQtyList();
