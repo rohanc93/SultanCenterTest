@@ -58,7 +58,7 @@ public class SmokeTest extends TestBase {
 		mp.usecartIcon();
 		Thread.sleep(4000);
 		cp.clickProceedToCheckout();
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		tp.selectSlot();
 		pp.selectPayment();
 		pp.placeOrder();
