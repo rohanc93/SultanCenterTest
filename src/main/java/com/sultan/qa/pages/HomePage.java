@@ -32,6 +32,9 @@ public class HomePage extends TestBase {
 	
 	@FindBy(xpath="//div[@class='message-error error message']")
 	WebElement errorMsgOOS;
+	
+	@FindBy(xpath="//a//span[@class='country_name']")
+	WebElement userArea;
 
 	public HomePage() throws IOException {
 		super();
@@ -167,6 +170,23 @@ public class HomePage extends TestBase {
 		} else {
 			System.out.println("wrong product added");
 		}*/
+	
+	public void userSelectedArea(String area2) 
+	{
+		
+		String selectedArea = userArea.getText();
+		//System.out.println(selectedArea);
+		String part[] =selectedArea.split(",");
+		for( String temp : part) {
+			System.out.println(temp);
+		}
+		if(area2.equals(selectedArea)) {
+			System.out.println("Area set successfully");
+		}else {
+			System.out.println("Area mismatch");
+		}
+	}
+		
 
 	}
 

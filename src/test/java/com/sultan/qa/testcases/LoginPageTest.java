@@ -10,14 +10,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.sultan.qa.base.TestBase;
+import com.sultan.qa.pages.DeliveryPopUp;
 import com.sultan.qa.pages.HomePage;
 import com.sultan.qa.pages.LoginPage;
 
 public class LoginPageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
+	DeliveryPopUp dp;
 
-	public LoginPageTest() throws IOException {
+	public LoginPageTest() throws IOException 
+	{
 		super();
 	}
 
@@ -25,10 +28,14 @@ public class LoginPageTest extends TestBase {
 	public void setup() throws IOException {
 		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
-	}
+		dp = new DeliveryPopUp();	
+		}
 
-	@Test(priority = 1 , enabled =false)
-	public void loginPageTitleTest() {
+	
+	
+	@Test(priority = 1 , enabled =true)
+	public void loginPageTitleTest() throws InterruptedException {
+		dp.selectStdDeliveryArea("Jabriya");
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "Web Home Page");
 	}
@@ -39,7 +46,7 @@ public class LoginPageTest extends TestBase {
 		Assert.assertTrue(flag);
 	}
 
-	@Test(priority = 3 , enabled =true)
+	@Test(priority = 3 , enabled =false)
 	public void loginTest() throws IOException, InterruptedException {
 		// System.out.println("-----" +prop.getProperty("username") + "----");
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));

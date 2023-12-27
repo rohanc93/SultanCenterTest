@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
@@ -31,7 +32,9 @@ public class TestBase {
 			System.setProperty("webdriver.chrome.driver",
 					//"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\chromedriver.exe"
 					"R:\\Sultan\\SultanCenterTest\\src\\main\\resources\\Browsers\\chromedriver.exe");
-			driver = new ChromeDriver();
+			ChromeOptions option = new ChromeOptions();
+			option.addArguments("incognito");
+			driver = new ChromeDriver(option);
 		} else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
 					//"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\geckodriver.exe"
