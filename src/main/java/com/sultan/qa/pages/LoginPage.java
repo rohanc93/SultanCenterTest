@@ -18,13 +18,13 @@ public class LoginPage extends TestBase {
 	WebDriverWait wait = new WebDriverWait(driver, 20);
 
 	// PageFactory (webelements)
-	@FindBy(linkText = "Sign In")
+	@FindBy(linkText = "Login")
 	WebElement signInBtn;
 
-	@FindBy(id = "email")
+	@FindBy(xpath = "//div[@class='inputs did-floating-label-content']")
 	WebElement username;
 
-	@FindBy(id = "pass")
+	@FindBy(id = "password")
 	WebElement password;
 
 	@FindBy(id = "send2")
@@ -57,7 +57,8 @@ public class LoginPage extends TestBase {
 
 	// Actions (functions)
 	public String validateLoginPageTitle() {
-		return driver.getTitle();
+	return driver.getTitle();	
+	
 	}
 
 	public boolean validateSultanImage() {

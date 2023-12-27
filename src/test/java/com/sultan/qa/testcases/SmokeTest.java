@@ -68,12 +68,13 @@ public class SmokeTest extends TestBase {
 
 	@Test(enabled = false)
 	public void guestUserCheckout() throws InterruptedException, IOException {
-		dp.selectDeliveryArea("salmiya");
-		Thread.sleep(5000);
+		dp.selectCTCStore();
+		Thread.sleep(3000);
+		sp.search("milk");
 		sp.addToCart();
 		Thread.sleep(3000);
 		mp.usecartIcon();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		cp.clickProceedToCheckout();
 		lp.nonloggedInCheckout(prop.getProperty("username"), prop.getProperty("password"));
 		cp.clickProceedToCheckout();

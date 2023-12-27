@@ -30,16 +30,16 @@ public class LoginPageTest extends TestBase {
 	@Test(priority = 1 , enabled =false)
 	public void loginPageTitleTest() {
 		String title = loginPage.validateLoginPageTitle();
-		Assert.assertEquals(title, "Customer Login");
+		Assert.assertEquals(title, "Web Home Page");
 	}
 
-	@Test(priority = 2 , enabled =true)
+	@Test(priority = 2 , enabled =false)
 	public void sultanLogoImageTest() {
 		boolean flag = loginPage.validateSultanImage();
 		Assert.assertTrue(flag);
 	}
 
-	@Test(priority = 3 , enabled =false)
+	@Test(priority = 3 , enabled =true)
 	public void loginTest() throws IOException, InterruptedException {
 		// System.out.println("-----" +prop.getProperty("username") + "----");
 		homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
@@ -63,9 +63,9 @@ public class LoginPageTest extends TestBase {
 		loginPage.fgtPasswdLink("yogita@techsevin.com");
 	}
 	
-	@AfterMethod
+	/*@AfterMethod
 	public void tearDown() {
-		driver.quit();
-	}
+	driver.quit();
+	}*/
 
 }

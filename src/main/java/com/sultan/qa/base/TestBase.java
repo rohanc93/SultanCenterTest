@@ -20,7 +20,8 @@ public class TestBase {
 	public TestBase() throws IOException {
 		prop = new Properties();
 		FileInputStream ip = new FileInputStream(
-				"C:\\sultancenter_staging\\src\\main\\java\\com\\sultan\\qa\\config\\config.properties");
+				//"C:\\sultancenter_staging\\src\\main\\java\\com\\sultan\\qa\\config\\config.properties"
+				"R:\\Sultan\\SultanCenterTest\\src\\main\\java\\com\\sultan\\qa\\config\\config.properties");
 		prop.load(ip);
 	}
 
@@ -28,14 +29,17 @@ public class TestBase {
 		String browserName = prop.getProperty("browser");
 		if (browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\chromedriver.exe");
+					//"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\chromedriver.exe"
+					"R:\\Sultan\\SultanCenterTest\\src\\main\\resources\\Browsers\\chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browserName.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
-					"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\geckodriver.exe");
+					//"C:\\sultancenter_staging\\src\\main\\resources\\Browsers\\geckodriver.exe"
+					"R:\\Sultan\\SultanCenterTest\\src\\main\\resources\\Browsers\\geckodriver.exe");
 			System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
 			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,
-					"C:\\sultancenter_staging\\target\\logs.txt");
+					//"C:\\sultancenter_staging\\target\\logs.txt"
+					"R:\\Sultan\\SultanCenterTest\\target\\logs.txt");
 			driver = new FirefoxDriver();
 
 		}

@@ -68,7 +68,7 @@ public class PlaceOrderPage extends TestBase {
 	
 	
 	
-	
+
 	public void orderSuccess() {
 		if(successUrl.equals("https://m2staging.sultan-center.com/checkout/onepage/success/")) {
 			String orderId =getOrderId.getText();
