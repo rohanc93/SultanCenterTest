@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import com.sultan.qa.base.TestBase;
 import com.sultan.qa.pages.DeliveryPopUp;
+import com.sultan.qa.pages.FooterPage;
 import com.sultan.qa.pages.HomePage;
 import com.sultan.qa.pages.LoginPage;
 
@@ -18,6 +19,7 @@ public class LoginPageTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	DeliveryPopUp dp;
+	FooterPage fp;
 
 	public LoginPageTest() throws IOException 
 	{
@@ -29,13 +31,13 @@ public class LoginPageTest extends TestBase {
 		initialization(prop.getProperty("isLogin"));
 		loginPage = new LoginPage();
 		dp = new DeliveryPopUp();	
+		fp= new FooterPage();
 		}
 
 	
 	
-	@Test(priority = 1 , enabled =true)
+	@Test(priority = 1 , enabled = false)
 	public void loginPageTitleTest() throws InterruptedException {
-		dp.selectStdDeliveryArea("Jabriya");
 		String title = loginPage.validateLoginPageTitle();
 		Assert.assertEquals(title, "Web Home Page");
 	}
@@ -70,9 +72,18 @@ public class LoginPageTest extends TestBase {
 		loginPage.fgtPasswdLink("yogita@techsevin.com");
 	}
 	
-	/*@AfterMethod
+	@Test
+	public void footerPresenceTest() throws InterruptedException
+	{	
+		//String area ="ABdally";
+		dp.selectStdDeliveryArea("Abdally");
+		fp.footerPresence();
+		fp.footerLinks();
+	}
+	
+	@AfterMethod
 	public void tearDown() {
 	driver.quit();
-	}*/
+	}
 
 }

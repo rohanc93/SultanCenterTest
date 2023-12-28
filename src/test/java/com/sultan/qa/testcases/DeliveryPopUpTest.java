@@ -29,21 +29,21 @@ public class DeliveryPopUpTest extends TestBase
 		}
 
 	
-	@Test(priority= 1 , enabled=false)
+	@Test(priority= 1 , enabled=true)
 	public void selectStdArea() throws InterruptedException
-	{
-		dp.selectStdDeliveryArea("Jabriya");
+	{	
+		String stdArea = "Abdally";
+		dp.selectStdDeliveryArea(stdArea);
+		hp.userSelectedArea(stdArea);
 	}
 	
-	@Test(priority= 1 , enabled=true)
+	@Test(priority= 1 , enabled=false)
 	public void selectRushArea() throws InterruptedException
 	{
-		String area = "Hawalli";
-		dp.selectRushDeliveryArea(area);
-		hp.userSelectedArea(area);
-		
-			
-		}
+		String rushArea = "Hawalli";
+		dp.selectRushDeliveryArea(rushArea);
+		hp.userSelectedArea(rushArea);	
+	}
 	
 	@AfterMethod
 	public void tearDown() {

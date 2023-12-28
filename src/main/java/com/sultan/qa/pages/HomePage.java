@@ -177,13 +177,10 @@ public class HomePage extends TestBase {
 		String selectedArea = userArea.getText();
 		//System.out.println(selectedArea);
 		String part[] =selectedArea.split(",");
-		for( String temp : part) {
-			System.out.println(temp);
-		}
-		if(area2.equals(selectedArea)) {
+		if(area2.equals(part[0])) {
 			System.out.println("Area set successfully");
 		}else {
-			System.out.println("Area mismatch");
+			System.out.println("Area not set");
 		}
 	}
 		

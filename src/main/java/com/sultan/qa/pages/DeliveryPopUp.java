@@ -52,10 +52,10 @@ public class DeliveryPopUp  extends TestBase{
 	
 	
 	public void selectStdDeliveryArea(String stdArea) throws InterruptedException {
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		deliveringTo.click();
 		//deliveringTo.sendKeys(area);
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		List<WebElement> options = areaDropDwn.findElements(By.tagName("li"));
 		for (WebElement option : options)
 		{
